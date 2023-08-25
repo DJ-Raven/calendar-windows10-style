@@ -5,6 +5,9 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import java.awt.EventQueue;
+import java.awt.event.MouseEvent;
+import raven.calendar.model.ModelDate;
+import raven.calendar.utils.CalendarSelectedListener;
 
 /**
  *
@@ -17,6 +20,12 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
+        calendar1.addCalendarSelectedListener(new CalendarSelectedListener() {
+            @Override
+            public void selected(MouseEvent evt, ModelDate date) {
+                System.out.println(date.toDate());
+            }
+        });
     }
 
     /**
@@ -29,6 +38,7 @@ public class Test extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        calendar1 = new raven.calendar.Calendar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,17 +53,23 @@ public class Test extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(636, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(115, 115, 115))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(calendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(295, Short.MAX_VALUE)
+                .addContainerGap(71, Short.MAX_VALUE)
+                .addComponent(calendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(jButton1)
-                .addGap(240, 240, 240))
+                .addContainerGap())
         );
 
         pack();
@@ -92,6 +108,7 @@ public class Test extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private raven.calendar.Calendar calendar1;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
